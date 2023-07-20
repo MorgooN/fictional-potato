@@ -62,7 +62,7 @@ public class Login extends JFrame implements ActionListener {
         passwordField.setFont(new Font("AvantGarde",Font.BOLD,14));
         add(passwordField);
 
-        // TO BE COMMENTED
+        // Creating 3 button, straightforward
         button1 = new JButton("SIGN IN");
         button1.setFont(new Font("AvantGarde",Font.BOLD,20));
         button1.setForeground(Color.GRAY);
@@ -107,6 +107,8 @@ public class Login extends JFrame implements ActionListener {
 
     }
 
+    // Here we implement actionPerformed method from ActionListener class
+    // the logic here is to clear all labels when button2 pressed. The other buttons logic will be updated
     @Override
     public void actionPerformed(ActionEvent e) {
 
