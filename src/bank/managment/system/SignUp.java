@@ -11,7 +11,7 @@ public class SignUp  extends JFrame {
 
     JRadioButton jr1, jr2;
 
-    JTextField textName, textFname, textGen;
+    JTextField textName, textFname, textGen, textEmail, textMS, textAD;
     JDateChooser dateChooser;
 
     /* The goal of the 3 below lines is to
@@ -48,6 +48,21 @@ public class SignUp  extends JFrame {
         textFname.setBounds(350,300,400,25);
         add(textFname);
 
+        textEmail = new JTextField();
+        textEmail.setFont( new Font("AvantGarde", Font.ITALIC, 14));
+        textEmail.setBounds(350,560,400,25);
+        add(textEmail);
+
+        textMS = new JTextField();
+        textMS.setFont( new Font("AvantGarde", Font.ITALIC, 14));
+        textMS.setBounds(350,610,400,25);
+        add(textMS);
+
+        textAD = new JTextField();
+        textAD.setFont( new Font("AvantGarde", Font.ITALIC, 14));
+        textAD.setBounds(350,660,400,25);
+        add(textAD);
+
         /* radioButton used instead
         textGen = new JTextField();
         textGen.setFont( new Font("AvantGarde", Font.ITALIC, 14));
@@ -80,6 +95,21 @@ public class SignUp  extends JFrame {
         DOB.setFont(new Font("AvantGard", Font.BOLD, 20));
         add(DOB);
 
+        JLabel emailAd = new JLabel(" Email Address: ");
+        emailAd .setFont(new Font("AvantGard", Font.BOLD, 20));
+        emailAd .setBounds(100,550,600,40);
+        add(emailAd);
+
+        JLabel maritalStatus = new JLabel(" Marital Status: ");
+        maritalStatus.setFont(new Font("AvantGard", Font.BOLD, 20));
+        maritalStatus.setBounds(100,600,610,40);
+        add(maritalStatus);
+
+        JLabel address = new JLabel(" Address: " );
+        address.setBounds(100,650,600,40);
+        address.setFont(new Font("AvantGard", Font.BOLD, 20));
+        add(address);
+
         dateChooser = new JDateChooser();
         dateChooser.setForeground(new Color(105,105,105));
         dateChooser.setBounds(350,360,400,25);
@@ -91,15 +121,26 @@ public class SignUp  extends JFrame {
         add(labelGen);
 
         jr1 = new JRadioButton(" Male ");
+        jr1.setBackground(Color.ORANGE);
         jr1.setFont(new Font("Raleway", Font.BOLD,14));
-        jr1.setBounds(300,455,150,30);
+        jr1.setBounds(350,455,150,30);
         add(jr1);
 
         jr2 = new JRadioButton(" Female ");
+        jr2.setBackground(Color.ORANGE);
         jr2.setFont(new Font("Raleway", Font.BOLD,14));
-        jr2.setBounds(500,455,150,30);
+        jr2.setBounds(550,455,150,30);
         add(jr2);
 
+
+        /*
+        ButtonGroup class allows us to create set of connected
+        buttons. If one of the button in the set in state 'ON'
+        then the others automatically turning into 'OFF' state
+         */
+        ButtonGroup bg1 = new ButtonGroup();
+        bg1.add(jr1);
+        bg1.add(jr2);
 
         getContentPane().setBackground(Color.ORANGE);
         setLayout(null);
