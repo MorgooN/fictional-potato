@@ -1,12 +1,18 @@
 package bank.managment.system;
 
+import com.toedter.calendar.JDateChooser; // specialized jar-file was linked to the project
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
+
 public class SignUp  extends JFrame {
 
-    JTextField textName, textFname;
+    JRadioButton jr1, jr2;
+
+    JTextField textName, textFname, textGen;
+    JDateChooser dateChooser;
 
     /* The goal of the 3 below lines is to
     generate random value for an application form */
@@ -24,8 +30,8 @@ public class SignUp  extends JFrame {
         image.setBounds(25,10,100,100);
         add(image);
 
-        JLabel label1 = new JLabel(" APPLICATION FORM NO. " + first);
-        label1.setBounds(160,20,600,40);
+        JLabel label1 = new JLabel(" APPLICATION FORM NO. " + first); // text label with random-generated number
+        label1.setBounds(160,10,600,40);
         label1.setFont(new Font("AvantGard", Font.BOLD, 30));
         add(label1);
 
@@ -34,14 +40,19 @@ public class SignUp  extends JFrame {
          creating and adjusting  */
         textName = new JTextField();
         textName.setFont( new Font("AvantGarde", Font.ITALIC, 14));
-        textName.setBounds(350,200,300,35);
+        textName.setBounds(350,200,400,25);
         add(textName);
 
         textFname = new JTextField();
         textFname.setFont( new Font("AvantGarde", Font.ITALIC, 14));
-        textFname.setBounds(350,300,300,35);
+        textFname.setBounds(350,300,400,25);
         add(textFname);
 
+        /* radioButton used instead
+        textGen = new JTextField();
+        textGen.setFont( new Font("AvantGarde", Font.ITALIC, 14));
+        textGen.setBounds(350,400,400,25);
+        add(textGen); */
 
         // creating and adjusting(the hardest part) text labels
         JLabel label2 = new JLabel(" Page 1 ");
@@ -54,18 +65,40 @@ public class SignUp  extends JFrame {
         label3.setBounds(290,130,600,30);
         add(label3);
 
-        JLabel labelName = new JLabel(" Name ");
-        labelName.setFont(new Font("AvantGard", Font.BOLD, 30));
-        labelName.setBounds(100,200,100,30);
+        JLabel labelName = new JLabel(" Name: ");
+        labelName.setFont(new Font("AvantGard", Font.BOLD, 20));
+        labelName.setBounds(100,200,100,20);
         add(labelName);
 
-        JLabel labelFName = new JLabel("Father's Name ");
-        labelFName.setFont(new Font("AvantGard", Font.BOLD, 30));
-        labelFName.setBounds(100,300,250,30);
+        JLabel labelFName = new JLabel("Father's Name: ");
+        labelFName.setFont(new Font("AvantGard", Font.BOLD, 20));
+        labelFName.setBounds(105,300,250,20);
         add(labelFName);
 
+        JLabel DOB = new JLabel(" Date of birth: " );
+        DOB.setBounds(100,350,600,40);
+        DOB.setFont(new Font("AvantGard", Font.BOLD, 20));
+        add(DOB);
 
+        dateChooser = new JDateChooser();
+        dateChooser.setForeground(new Color(105,105,105));
+        dateChooser.setBounds(350,360,400,25);
+        add(dateChooser);
 
+        JLabel labelGen = new JLabel(" Gender: ");
+        labelGen.setBounds(100,450,600,40);
+        labelGen.setFont(new Font("AvantGard", Font.BOLD, 20));
+        add(labelGen);
+
+        jr1 = new JRadioButton(" Male ");
+        jr1.setFont(new Font("Raleway", Font.BOLD,14));
+        jr1.setBounds(300,455,150,30);
+        add(jr1);
+
+        jr2 = new JRadioButton(" Female ");
+        jr2.setFont(new Font("Raleway", Font.BOLD,14));
+        jr2.setBounds(500,455,150,30);
+        add(jr2);
 
 
         getContentPane().setBackground(Color.ORANGE);
