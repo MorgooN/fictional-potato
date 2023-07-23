@@ -4,12 +4,15 @@ import com.toedter.calendar.JDateChooser; // specialized jar-file was linked to 
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
 
-public class SignUp  extends JFrame {
+public class SignUp  extends JFrame implements ActionListener {
 
     JRadioButton jr1, jr2, ms1,ms2,ms3;
+    JButton jb1;
 
     JTextField textName, textFname, textGen, textEmail, textMS, textAD, textPin;
     JDateChooser dateChooser;
@@ -50,7 +53,7 @@ public class SignUp  extends JFrame {
 
         textEmail = new JTextField();
         textEmail.setFont( new Font("AvantGarde", Font.ITALIC, 14));
-        textEmail.setBounds(350,560,400,25);
+        textEmail.setBounds(350,510,400,25);
         add(textEmail);
 
         /* decided to use radioButton instead
@@ -61,12 +64,12 @@ public class SignUp  extends JFrame {
 
         textAD = new JTextField();
         textAD.setFont( new Font("AvantGarde", Font.ITALIC, 14));
-        textAD.setBounds(350,660,400,25);
+        textAD.setBounds(350,620,400,25);
         add(textAD);
 
         textPin = new JTextField();
         textPin.setFont( new Font("AvantGarde", Font.ITALIC, 14));
-        textPin.setBounds(350,710,400,25);
+        textPin.setBounds(350,675,400,25);
         add(textPin);
 
         /* radioButton used instead
@@ -103,22 +106,22 @@ public class SignUp  extends JFrame {
 
         JLabel emailAd = new JLabel(" Email Address: ");
         emailAd .setFont(new Font("AvantGard", Font.BOLD, 20));
-        emailAd .setBounds(100,550,600,40);
+        emailAd .setBounds(100,510,600,40);
         add(emailAd);
 
         JLabel maritalStatus = new JLabel(" Marital Status: ");
         maritalStatus.setFont(new Font("AvantGard", Font.BOLD, 20));
-        maritalStatus.setBounds(100,600,610,40);
+        maritalStatus.setBounds(100,570,610,40);
         add(maritalStatus);
 
         JLabel address = new JLabel(" Address: " );
-        address.setBounds(100,650,600,40);
+        address.setBounds(100,620,600,40);
         address.setFont(new Font("AvantGard", Font.BOLD, 20));
         add(address);
 
         JLabel PinCode = new JLabel(" PinCode ");
         PinCode.setFont(new Font("AvantGard", Font.BOLD, 20));
-        PinCode.setBounds(100,700,610,40);
+        PinCode.setBounds(100,675,610,40);
         add(PinCode);
 
         dateChooser = new JDateChooser();
@@ -149,20 +152,28 @@ public class SignUp  extends JFrame {
         ms1 = new JRadioButton(" Married ");
         ms1.setBackground(Color.ORANGE);
         ms1.setFont(new Font("Raleway", Font.BOLD,14));
-        ms1.setBounds(350,600,150,30);
+        ms1.setBounds(350,570,150,30);
         add(ms1);
 
         ms2 = new JRadioButton(" Unmarried ");
         ms2.setBackground(Color.ORANGE);
         ms2.setFont(new Font("Raleway", Font.BOLD,14));
-        ms2.setBounds(550,600,150,30);
+        ms2.setBounds(550,570,150,30);
         add(ms2);
 
         ms3 = new JRadioButton(" Other ");
         ms3.setBackground(Color.ORANGE);
         ms3.setFont(new Font("Raleway", Font.BOLD,14));
-        ms3.setBounds(730,600,150,30);
+        ms3.setBounds(730,570,150,30);
         add(ms3);
+
+        jb1 = new JButton("Next ");
+        jb1.setFont(new Font("Raleway", Font.BOLD, 14));
+        jb1.setBackground(Color.BLACK);
+        jb1.setForeground(Color.WHITE);
+        jb1.setBounds(660,720,80,30);
+        jb1.addActionListener(this);
+        add(jb1);
 
 
 
@@ -193,5 +204,12 @@ public class SignUp  extends JFrame {
     public static void main(String[] args) {
         new SignUp();
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==jb1){
+
+        }
     }
 }
