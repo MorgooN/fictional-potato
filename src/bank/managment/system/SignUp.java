@@ -9,9 +9,9 @@ import java.util.Random;
 
 public class SignUp  extends JFrame {
 
-    JRadioButton jr1, jr2;
+    JRadioButton jr1, jr2, ms1,ms2,ms3;
 
-    JTextField textName, textFname, textGen, textEmail, textMS, textAD;
+    JTextField textName, textFname, textGen, textEmail, textMS, textAD, textPin;
     JDateChooser dateChooser;
 
     /* The goal of the 3 below lines is to
@@ -53,15 +53,21 @@ public class SignUp  extends JFrame {
         textEmail.setBounds(350,560,400,25);
         add(textEmail);
 
+        /* decided to use radioButton instead
         textMS = new JTextField();
         textMS.setFont( new Font("AvantGarde", Font.ITALIC, 14));
         textMS.setBounds(350,610,400,25);
-        add(textMS);
+        add(textMS); */
 
         textAD = new JTextField();
         textAD.setFont( new Font("AvantGarde", Font.ITALIC, 14));
         textAD.setBounds(350,660,400,25);
         add(textAD);
+
+        textPin = new JTextField();
+        textPin.setFont( new Font("AvantGarde", Font.ITALIC, 14));
+        textPin.setBounds(350,710,400,25);
+        add(textPin);
 
         /* radioButton used instead
         textGen = new JTextField();
@@ -110,6 +116,11 @@ public class SignUp  extends JFrame {
         address.setFont(new Font("AvantGard", Font.BOLD, 20));
         add(address);
 
+        JLabel PinCode = new JLabel(" PinCode ");
+        PinCode.setFont(new Font("AvantGard", Font.BOLD, 20));
+        PinCode.setBounds(100,700,610,40);
+        add(PinCode);
+
         dateChooser = new JDateChooser();
         dateChooser.setForeground(new Color(105,105,105));
         dateChooser.setBounds(350,360,400,25);
@@ -120,6 +131,8 @@ public class SignUp  extends JFrame {
         labelGen.setFont(new Font("AvantGard", Font.BOLD, 20));
         add(labelGen);
 
+
+        // using radioButton for genderChoosing
         jr1 = new JRadioButton(" Male ");
         jr1.setBackground(Color.ORANGE);
         jr1.setFont(new Font("Raleway", Font.BOLD,14));
@@ -132,6 +145,27 @@ public class SignUp  extends JFrame {
         jr2.setBounds(550,455,150,30);
         add(jr2);
 
+        // same radioButtons but for a marital status choose
+        ms1 = new JRadioButton(" Married ");
+        ms1.setBackground(Color.ORANGE);
+        ms1.setFont(new Font("Raleway", Font.BOLD,14));
+        ms1.setBounds(350,600,150,30);
+        add(ms1);
+
+        ms2 = new JRadioButton(" Unmarried ");
+        ms2.setBackground(Color.ORANGE);
+        ms2.setFont(new Font("Raleway", Font.BOLD,14));
+        ms2.setBounds(550,600,150,30);
+        add(ms2);
+
+        ms3 = new JRadioButton(" Other ");
+        ms3.setBackground(Color.ORANGE);
+        ms3.setFont(new Font("Raleway", Font.BOLD,14));
+        ms3.setBounds(730,600,150,30);
+        add(ms3);
+
+
+
 
         /*
         ButtonGroup class allows us to create set of connected
@@ -141,6 +175,13 @@ public class SignUp  extends JFrame {
         ButtonGroup bg1 = new ButtonGroup();
         bg1.add(jr1);
         bg1.add(jr2);
+
+        // same purpose as for above code, but now for the
+        // marital status
+        ButtonGroup bg2 = new ButtonGroup();
+        bg2.add(ms1);
+        bg2.add(ms2);
+        bg2.add(ms3);
 
         getContentPane().setBackground(Color.ORANGE);
         setLayout(null);
