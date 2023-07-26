@@ -7,10 +7,10 @@ import java.sql.Statement;
 import java.sql.*;
 
 public class Connector {
-    public Connector(){
-        Connection connection;
-        Statement statement;
+    Connection connection;
+    Statement statement;
 
+    public Connector(){
         try{
         connection = (Connection) DriverManager.getConnection(" jdbc:mysql://localhost:3306/bankSystem",
                 "root", "Stromgard_77");

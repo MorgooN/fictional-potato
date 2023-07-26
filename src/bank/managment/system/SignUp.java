@@ -7,6 +7,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import com.sun.jdi.connect.spi.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.*;
 
 
 public class SignUp  extends JFrame implements ActionListener {
@@ -218,6 +223,10 @@ public class SignUp  extends JFrame implements ActionListener {
         // getting is a bit more complex since it's provided by dateChooser
         String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
         String gender = null;
+        String pinCode = textPin.getText();
+        String add = textAD.getText();
+
+
         if(jr1.isSelected()){
             gender = "Male";
         }else if (jr2.isSelected()){
@@ -236,6 +245,21 @@ public class SignUp  extends JFrame implements ActionListener {
             marital = "Unmarried";
         }else if(ms3.isSelected()){
             marital = "Other";
+        }
+
+        try{
+            if(textName.getText().equals("")){
+                JOptionPane.showMessageDialog(null,
+                        "Fill all the fields ");
+            }else{
+                Connector con1 = new Connector();
+                String q = "insert into signup values('" +forma+"', '"+name+"', '"+fname+"', '"+dob+"','"+
+                        gender+"', '"+email+"', '"+marital+"', '"+add+"')";
+                con1.statement.executeUpdate(q);
+            }
+
+        }catch(Exception e1){
+            e1.printStackTrace();
         }
 
     }
