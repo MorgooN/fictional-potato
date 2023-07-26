@@ -62,6 +62,10 @@ public class SignUp  extends JFrame implements ActionListener {
         textMS.setBounds(350,610,400,25);
         add(textMS); */
 
+        /*
+        I decided do not create 'city' field since we have an
+        entire 'address' field where user can type his city too
+         */
         textAD = new JTextField();
         textAD.setFont( new Font("AvantGarde", Font.ITALIC, 14));
         textAD.setBounds(350,620,400,25);
@@ -208,8 +212,31 @@ public class SignUp  extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String forma = first;
+        String name = textName.getText();
+        String fname = textFname.getText();
+        // getting is a bit more complex since it's provided by dateChooser
+        String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
+        String gender = null;
+        if(jr1.isSelected()){
+            gender = "Male";
+        }else if (jr2.isSelected()){
+            gender = "Female";
+        }
+
         if(e.getSource()==jb1){
 
         }
+        String email = textEmail.getText();
+        String marital = null;
+
+        if(ms1.isSelected()){
+            marital = "Married";
+        }else if (ms2.isSelected()){
+            marital = "Unmarried";
+        }else if(ms3.isSelected()){
+            marital = "Other";
+        }
+
     }
 }
