@@ -256,7 +256,7 @@ public class SignUp  extends JFrame implements ActionListener {
                 String q = "insert into signup values('" +forma+"', '"+name+"', '"+fname+"', '"+dob+"','"+
                         gender+"', '"+email+"', '"+marital+"', '"+add+"')";
                 con1.statement.executeUpdate(q);
-                new SignUp2();
+                new SignUp2(first);
                 setVisible(false);
             }
 
