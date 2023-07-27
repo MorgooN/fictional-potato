@@ -13,7 +13,6 @@ public class Connector {
                 "root", "Stromgard_77"); // 3306 - port for MySQL connection
         statement = connection.createStatement(); // via statement instance the query will executed
 
-
         }catch(Exception e){
             e.printStackTrace();
         }
