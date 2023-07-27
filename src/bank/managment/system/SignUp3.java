@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class SignUp3 extends JFrame implements ActionListener {
 
@@ -79,7 +80,7 @@ public class SignUp3 extends JFrame implements ActionListener {
         l10.setBounds(180,400,250,20); // ideal placement
         add(l10);
 
-        JLabel l11 = new JLabel("Form No: ");
+        JLabel l11 = new JLabel("Form No: " + formno);
         l11.setFont(new Font("AvantGarde", Font.BOLD, 13));
         l11.setBounds(700,10,250,20); // ideal placement
         add(l11);
@@ -195,8 +196,42 @@ public class SignUp3 extends JFrame implements ActionListener {
             accType = "RecDepAcc";
         }
 
+        Random r1 = new Random();
+        long first7 = (r1.nextLong() % 9000000L) + 143896569456L;
+        String cardNumb = " " + Math.abs(first7);
+        long first4 = (r1.nextLong() % 9000L) + 1000L;
+        String pinNumb = " " + Math.abs(first4);
 
+        String servReq = "";
+        if(e.getSource()==b1){
+            servReq += serReq + "ATM CARD";
+        } else if (e.getSource()==b2) {
+            servReq +=servReq + "InternetBanking";
+        } else if (e.getSource()==b3) {
+            servReq += serReq +  "MobBank";
+        } else if (e.getSource() == b4) {
+            servReq  += serReq + "EmailAlert";
+        } else if (e.getSource()==b5) {
+            servReq+= serReq + "MobAlert";
+        }else if(e.getSource()==b6){
+            servReq +=serReq + "AccCheck";
+        }
         try{
+
+            Connector con = new Connector();
+            String q = "insert into accDet values('" +accType+"', '"+cardNumb+"', '"+pinNumb+"', " +
+                    "'"+serReq+"','"+formno+"')";
+            con.statement.executeUpdate(q);
+            String q1 = "insert into login values('"+cardNumb+"', '"+pinNumb+"','"+formno+"')";
+            con.statement.executeUpdate(q1);
+            JOptionPane.showMessageDialog(null," Card Number " + cardNumb +
+                    " \nPIN " + pinNumb);
+
+            if(e.getSource()==j2){
+                System.exit(0);
+            }
+
+
 
         }catch(Exception e2){
             e2.printStackTrace();

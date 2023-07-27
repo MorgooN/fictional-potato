@@ -56,7 +56,6 @@ public class Login extends JFrame implements ActionListener {
         textField2.setFont(new Font("AvantGarde",Font.BOLD,14));
         add(textField2);
 
-
         passwordField = new JPasswordField(15);
         passwordField.setBounds(335,250,230,30);
         passwordField.setFont(new Font("AvantGarde",Font.BOLD,14));
@@ -89,9 +88,6 @@ public class Login extends JFrame implements ActionListener {
         label3.setForeground(Color.BLACK);
         label3.setBounds(150,250,375,30);
         add(label3);
-
-
-
 
         ImageIcon iii1 = new ImageIcon(ClassLoader.getSystemResource("icon/backbg.png")); // to-be-commented
         Image iii2 = iii1.getImage().getScaledInstance(850,480,Image.SCALE_DEFAULT);
