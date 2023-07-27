@@ -2,12 +2,17 @@ package bank.managment.system;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class SignUp3 extends JFrame {
+public class SignUp3 extends JFrame implements ActionListener {
 
     JRadioButton r1, r2, r3, r4;
     ButtonGroup br1;
     JCheckBox b1,b2,b3,b4,b5,b6,b7;
+    String formno;
+
+    JButton j1, j2;
     SignUp3(){
 
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/bank.png")); // to-be-commented
@@ -19,7 +24,7 @@ public class SignUp3 extends JFrame {
 
 
         getContentPane().setBackground(new Color(215,252,252));
-        setSize(850,700);
+        setSize(850,850);
         setLayout(null);
         setLocation(400,20);
         setVisible(true);
@@ -73,6 +78,11 @@ public class SignUp3 extends JFrame {
         l10.setFont(new Font("AvantGarde", Font.BOLD, 16));
         l10.setBounds(180,400,250,20); // ideal placement
         add(l10);
+
+        JLabel l11 = new JLabel("Form No: ");
+        l11.setFont(new Font("AvantGarde", Font.BOLD, 13));
+        l11.setBounds(700,10,250,20); // ideal placement
+        add(l11);
 
         r1 = new JRadioButton("Saving account ");
         r1.setFont(new Font("Avant Garde", Font.BOLD,15));
@@ -147,6 +157,20 @@ public class SignUp3 extends JFrame {
         b7.setBounds(100,580,600,20);
         add(b7);
 
+        j1 = new JButton("Submit");
+        j1.setFont(new Font("AvantGarde", Font.BOLD,16));
+        j1.setBackground(Color.BLACK);
+        j1.setForeground(Color.white);
+        j1.setBounds(420,720,100,30);
+        add(j1);
+
+        j2 = new JButton("Cancel");
+        j2.setFont(new Font("AvantGarde", Font.BOLD,16));
+        j2.setBackground(Color.BLACK);
+        j2.setForeground(Color.white);
+        j2.setBounds(220,720,100,30);
+        add(j2);
+
 
 
 
@@ -155,5 +179,14 @@ public class SignUp3 extends JFrame {
 
     public static void main(String[] args) {
         new SignUp3();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try{
+
+        }catch(Exception e2){
+            e2.printStackTrace();
+        }
     }
 }

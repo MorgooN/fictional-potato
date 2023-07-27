@@ -7,14 +7,14 @@ import java.awt.event.ActionListener;
 
 public class SignUp2 extends JFrame implements ActionListener {
 
+    JComboBox comboBox, comboBox1, comboBox2,comboBox3, comboBox4;
+    JRadioButton r1,r2,e1,e2;
+    ButtonGroup bt1, bt2;
+    JButton next;
     String formno;
+
     SignUp2(String first){
         super("APPLICATION FORM");
-
-        JComboBox comboBox, comboBox1, comboBox2,comboBox3, comboBox4;
-        JRadioButton r1,r2,e1,e2;
-        ButtonGroup bt1, bt2;
-        JButton next;
 
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/bank.png")); // to-be-commented
         Image i2 = i1.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT);
@@ -126,12 +126,15 @@ public class SignUp2 extends JFrame implements ActionListener {
 
         // another array for another comboBox
         String[] category = {"General", "OBC", "SC", "Other"};
-
         String[] income = {" Null", "<150000","<250000","<500000", "Above 500000"};
-
         String[] edu = {"Non-Graduate","Middle","College","Bachelor","Master","Ph.D"};
-
         String[] occup = {"Self-Employed", "Salaried", "Business", "Student","Retired", "Other"};
+
+        String rel;
+        String inc;
+        String cat;
+        String educ;
+        String oc;
 
 
         //comboBox which holds religions
@@ -188,6 +191,24 @@ public class SignUp2 extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+            String cat = (String) comboBox.getSelectedItem(); // processing users choose via getSelectedItem method
+            String rel = (String) comboBox1.getSelectedItem();
+            String inc = (String) comboBox2.getSelectedItem();
+            String edu = (String) comboBox3.getSelectedItem();
+            String occ = (String) comboBox4.getSelectedItem();
 
+            String senCit = " ";
+            if(e.getSource()==r1){
+                senCit = "YES";
+            }else if(e.getSource() == r2){
+                senCit = "NO";
+            }
+
+            String exAc = " ";
+            if(e1.isSelected()){
+                exAc  = "YES";
+            }else if(e.getSource()==e2){
+                exAc = "NO";
+            }
     }
 }
