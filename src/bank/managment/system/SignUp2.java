@@ -210,5 +210,18 @@ public class SignUp2 extends JFrame implements ActionListener {
             }else if(e.getSource()==e2){
                 exAc = "NO";
             }
+
+            try{
+                Connector con = new Connector();
+                String q = "insert into addinfo values('" +rel+"', '"+cat+"', '"+inc+"', '"+occ+"','"+
+                        senCit+"','"+ exAc+"','"+edu+"', '"+formno+"')";
+                con.statement.executeUpdate(q);
+                new SignUp3();
+                setVisible(false);
+
+            }catch(Exception E){
+                E.printStackTrace();
+
+            }
     }
 }

@@ -162,6 +162,7 @@ public class SignUp3 extends JFrame implements ActionListener {
         j1.setBackground(Color.BLACK);
         j1.setForeground(Color.white);
         j1.setBounds(420,720,100,30);
+        j1.addActionListener(this);
         add(j1);
 
         j2 = new JButton("Cancel");
@@ -169,10 +170,8 @@ public class SignUp3 extends JFrame implements ActionListener {
         j2.setBackground(Color.BLACK);
         j2.setForeground(Color.white);
         j2.setBounds(220,720,100,30);
+        j2.addActionListener(this);
         add(j2);
-
-
-
 
 
     }
@@ -183,6 +182,20 @@ public class SignUp3 extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String accType = "";
+        String serReq = "";
+
+        if(e.getSource()==r1){
+            accType = "savingAccount";
+        }else if(e.getSource()==r2){
+            accType = "FixDepAcc";
+        }else if(e.getSource()==r3){
+            accType = "CurrentAcc";
+        } else if (e.getSource()==r4) {
+            accType = "RecDepAcc";
+        }
+
+
         try{
 
         }catch(Exception e2){
