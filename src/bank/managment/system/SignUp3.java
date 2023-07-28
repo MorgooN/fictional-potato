@@ -23,7 +23,6 @@ public class SignUp3 extends JFrame implements ActionListener {
         image.setBounds(150,5,100,100);
         add(image);
 
-
         getContentPane().setBackground(new Color(215,252,252));
         setSize(850,850);
         setLayout(null);
