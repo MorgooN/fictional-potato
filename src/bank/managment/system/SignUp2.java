@@ -13,7 +13,7 @@ public class SignUp2 extends JFrame implements ActionListener {
     JButton next;
     String formno;
 
-    SignUp2(String first){
+    SignUp2(String formno){
         super("APPLICATION FORM");
 
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/bank.png")); // to-be-commented
@@ -75,7 +75,7 @@ public class SignUp2 extends JFrame implements ActionListener {
         l10.setBounds(750, 10, 130,30);
         add(l10);
 
-        JLabel l11 = new JLabel("Form No: " +first);
+        JLabel l11 = new JLabel("Form No: " +formno);
         l11.setFont(new Font("AvantGarde",Font.BOLD,16));
         l11.setBounds(700, 10, 130,30);
         add(l11);
