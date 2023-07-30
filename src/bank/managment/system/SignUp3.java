@@ -16,6 +16,8 @@ public class SignUp3 extends JFrame implements ActionListener {
     JButton j1, j2;
     SignUp3(){
 
+        this.formno = formno;
+
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/bank.png")); // to-be-commented
         Image i2 = i1.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
@@ -185,41 +187,41 @@ public class SignUp3 extends JFrame implements ActionListener {
         String accType = "";
         String serReq = "";
 
-        if(e.getSource()==r1){
-            accType = "savingAccount";
-        }else if(e.getSource()==r2){
+        if(r1.isSelected()){
+            accType = "SavingAccount";
+        }else if(r2.isSelected()){
             accType = "FixDepAcc";
-        }else if(e.getSource()==r3){
+        }else if(r3.isSelected()){
             accType = "CurrentAcc";
-        } else if (e.getSource()==r4) {
+        } else if (r4.isSelected()) {
             accType = "RecDepAcc";
         }
 
         Random r1 = new Random();
-        long first7 = (r1.nextLong() % 9000000L) + 143896569456L;
+        long first7 = (r1.nextLong() % 9000000L) + 143896569456L; // generating card-number of dialog window
         String cardNumb = " " + Math.abs(first7);
-        long first4 = (r1.nextLong() % 9000L) + 1000L;
+        long first4 = (r1.nextLong() % 9000L) + 1000L;  // same as for card-number
         String pinNumb = " " + Math.abs(first4);
 
-        String servReq = "";
-        if(e.getSource()==b1){
+        String servReq = " ";
+        if(b1.isSelected()){
             servReq += serReq + "ATM CARD";
-        } else if (e.getSource()==b2) {
+        } else if (b2.isSelected()) {
             servReq +=servReq + "InternetBanking";
-        } else if (e.getSource()==b3) {
+        } else if (b3.isSelected()) {
             servReq += serReq +  "MobBank";
-        } else if (e.getSource() == b4) {
+        } else if (b4.isSelected()) {
             servReq  += serReq + "EmailAlert";
-        } else if (e.getSource()==b5) {
+        } else if (b5.isSelected()) {
             servReq+= serReq + "MobAlert";
-        }else if(e.getSource()==b6){
+        }else if(b6.isSelected()){
             servReq +=serReq + "AccCheck";
         }
         try{
 
             Connector con = new Connector();
             String q = "insert into accDet values('" +accType+"', '"+cardNumb+"', '"+pinNumb+"', " +
-                    "'"+serReq+"','"+formno+"')";
+                    "'"+servReq+"','"+formno+"')";
             con.statement.executeUpdate(q);
             String q1 = "insert into login values('"+cardNumb+"', '"+pinNumb+"','"+formno+"')";
             con.statement.executeUpdate(q1);
