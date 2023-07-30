@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class Deposit extends JFrame implements ActionListener {
 
@@ -11,7 +12,7 @@ public class Deposit extends JFrame implements ActionListener {
     TextField amtText;
     JButton j1, j2;
     Deposit(String pin){
-
+        this.pin = pin;
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/atm2.png"));
         Image i2 = i1.getImage().getScaledInstance(1550,830,Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
@@ -55,8 +56,6 @@ public class Deposit extends JFrame implements ActionListener {
         setSize(1550,1080);
         setLocation(0,0);
         setVisible(true);
-
-
     }
 
     public static void main(String[] args) {
@@ -65,6 +64,31 @@ public class Deposit extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        try{
+            String amt = amtText.getText();
+            Date date = new Date();
+            // classic connection establishing.
+            if(e.getSource()==j1){
+                if(amtText.getText().equals("")){
+                         JOptionPane.showMessageDialog(null,
+                                 "please enter amount you want to deposit");
+                }else{
+                    Connector con = new Connector();
+                    String q = "insert into bank values('" +pin+"', '"+date+"', 'Deposit'," +
+                            "'"+amt+"')";
+                    con.statement.executeUpdate(q);
+                    JOptionPane.showMessageDialog(null,"Rs. " + amt +
+                            " Deposited successful");
+                    setVisible(false);
+                }
+            } else if (e.getSource() == j2) {
+                 setVisible(false);
+            }
+        } catch(Exception E){
+            E.printStackTrace();
+        }
+
+
 
     }
 }
