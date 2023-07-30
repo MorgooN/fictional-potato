@@ -2,10 +2,14 @@ package bank.managment.system;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Deposit extends JFrame {
+public class Deposit extends JFrame implements ActionListener {
 
     String pin;
+    TextField amtText;
+    JButton j1, j2;
     Deposit(String pin){
 
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/atm2.png"));
@@ -14,6 +18,37 @@ public class Deposit extends JFrame {
         JLabel l3 = new JLabel(i3);
         l3.setBounds(0,0,1550,830);
         add(l3);
+
+        /* since we're adding label ON the black part
+        of the image (l3) it would be reasonable to add white foreground
+         */
+        JLabel l1 = new JLabel("ENTER AMOUNT DEPOSIT");
+        l1.setForeground(Color.WHITE);
+        l1.setFont(new Font("System",Font.BOLD,18));
+        l1.setBounds(460,180,400,35);
+        l3.add(l1);
+
+        amtText = new TextField();
+        amtText.setBackground(new Color(65,125,128));
+        amtText.setForeground(Color.WHITE);
+        amtText.setFont(new Font("AvantGarde", Font.ITALIC, 22));
+        amtText.setBounds(460,230,320,25);
+        l3.add(amtText);
+
+        j1 = new JButton("DEPOSIT");
+        j1.setBounds(700,406,150,35);
+        j1.setBackground(new Color(65,125,128));
+        j1.setForeground(Color.WHITE);
+        j1.addActionListener(this);
+        l3.add(j1);
+
+        j2 = new JButton("BACK");
+        j2.setBounds(700,362,150,35);
+        j2.setBackground(new Color(65,125,128));
+        j2.setForeground(Color. WHITE);
+        j2.addActionListener(this);
+        l3.add(j2);
+
 
         this.pin = pin;
         setLayout(null);
@@ -26,5 +61,10 @@ public class Deposit extends JFrame {
 
     public static void main(String[] args) {
             new Deposit(" ");
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }
