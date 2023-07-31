@@ -80,6 +80,7 @@ public class Deposit extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null,"Rs. " + amt +
                             " Deposited successful");
                     setVisible(false);
+                    new Transaction(pin);
                 }
             } else if (e.getSource() == j2) {
                  setVisible(false);

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 // for display login components we'll be use
 // JFrame which is a container for a labels buttons etc.
@@ -99,6 +100,7 @@ public class Login extends JFrame implements ActionListener {
         setLayout(null);
         setSize(850,480);
         setLocation(450,200);
+        setUndecorated(true);
         setVisible(true);
 
     }
@@ -111,6 +113,17 @@ public class Login extends JFrame implements ActionListener {
             // to commented
             try{
             if(e.getSource()==button1){
+                    Connector con = new Connector();
+                    String cardNum = textField2.getText();
+                    String pin = passwordField.getText();
+                    String q = "select * from login where cardNum = '"+cardNum+"' and  pin = '"+pin+"'";
+                    ResultSet rs = con.statement.executeQuery(q);
+                    if(rs.next()){
+                        setVisible(false);
+                        new Transaction(pin);
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Incorrect cardNum or pin");
+                    }
 
             }else if(e.getSource() == button2){
                 textField2.setText(" ");
