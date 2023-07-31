@@ -4,14 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.util.Date;
 
-public class Deposit extends JFrame implements ActionListener {
+public class Withdrawl extends JFrame implements ActionListener {
 
-    String pin;
     TextField amtText;
     JButton j1, j2;
-    Deposit(String pin){
+    String pin;
+    Withdrawl(String pin){
         this.pin = pin;
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/atm2.png"));
         Image i2 = i1.getImage().getScaledInstance(1550,830,Image.SCALE_DEFAULT);
@@ -23,25 +24,26 @@ public class Deposit extends JFrame implements ActionListener {
         /* since we're adding label ON the black part
         of the image (l3) it would be reasonable to add white foreground
          */
-        JLabel l1 = new JLabel("ENTER AMOUNT DEPOSIT");
+        JLabel l1 = new JLabel("MAX WITHDRAWAL IS 10,000");
         l1.setForeground(Color.WHITE);
         l1.setFont(new Font("System",Font.BOLD,18));
         l1.setBounds(460,180,400,35);
         l3.add(l1);
 
+        JLabel l2 = new JLabel("ENTER YOUR AMOUNT");
+        l2.setForeground(Color.WHITE);
+        l2.setFont(new Font("System",Font.BOLD,18));
+        l2.setBounds(460,220,400,35);
+        l3.add(l2);
+
         amtText = new TextField();
         amtText.setBackground(new Color(65,125,128));
         amtText.setForeground(Color.WHITE);
         amtText.setFont(new Font("AvantGarde", Font.ITALIC, 22));
-        amtText.setBounds(460,230,320,25);
+        amtText.setBounds(460,260,320,25);
         l3.add(amtText);
 
-        j1 = new JButton("DEPOSIT");
-        j1.setBounds(700,406,150,35);
-        j1.setBackground(new Color(65,125,128));
-        j1.setForeground(Color.WHITE);
-        j1.addActionListener(this);
-        l3.add(j1);
+
 
         j2 = new JButton("BACK");
         j2.setBounds(700,362,150,35);
@@ -59,37 +61,43 @@ public class Deposit extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-            new Deposit(" ");
+            new Withdrawl();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try{
-            String amt = amtText.getText();
-            Date date = new Date();
-            // classic connection establishing.
-            if(e.getSource()==j1){
+            try{
+                String amount = amtText.getText();
+                Date date = new Date();
+
                 if(amtText.getText().equals("")){
-                         JOptionPane.showMessageDialog(null,
-                                 "please enter amount you want to deposit");
+                    JOptionPane.showMessageDialog(null, "Enter correct amount");
                 }else{
                     Connector con = new Connector();
-                    String q = "insert into bank values('" +pin+"', '"+date+"', 'Deposit'," +
-                            "'"+amt+"')";
-                    con.statement.executeUpdate(q);
-                    JOptionPane.showMessageDialog(null,"Rs. " + amt +
-                            " Deposited successful");
+                    ResultSet rs = con.statement.executeQuery("select * from bank where pin = " +
+                            "'"+pin+"'");
+                    int balance = 0;
+                    while(rs.next()){
+                        if(rs.getString("type").equals("Deposit")){
+                            balance += Integer.parseInt(rs.getString("amount"));
+                        }else{
+                            balance -=Integer.parseInt(rs.getString("amount"));
+                        }
+                    }
+                    if(balance<Integer.parseInt(amount)){
+                        JOptionPane.showMessageDialog(null,"");
+                        return;
+                    }
+                    con.statement.executeUpdate("insert into bank values('"+pin+"','"+date+"' 'Withdrawal', " +
+                            "'"+amount+"')");
+                    JOptionPane.showMessageDialog(null,"Rs. "+amount+" Debited" +
+                            "Successfully");
                     setVisible(false);
                     new Transaction(pin);
                 }
-            } else if (e.getSource() == j2) {
-                 setVisible(false);
+
+            }catch(Exception e1){
+                e1.printStackTrace();
             }
-        } catch(Exception E){
-            E.printStackTrace();
-        }
-
-
-
     }
 }
