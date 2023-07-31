@@ -46,11 +46,18 @@ public class Withdrawl extends JFrame implements ActionListener {
 
 
         j2 = new JButton("BACK");
-        j2.setBounds(700,362,150,35);
+        j2.setBounds(700,372,150,35);
         j2.setBackground(new Color(65,125,128));
         j2.setForeground(Color. WHITE);
         j2.addActionListener(this);
         l3.add(j2);
+
+        j1 = new JButton("WITHDRAW");
+        j1.setBounds(700,332,150,35);
+        j1.setBackground(new Color(65,125,128));
+        j1.setForeground(Color.WHITE);
+        j1.addActionListener(this);
+        l3.add(j1);
 
 
 
@@ -61,43 +68,48 @@ public class Withdrawl extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-            new Withdrawl();
+            new Withdrawl("");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-            try{
+        if(e.getSource()==j1) {
+            try {
                 String amount = amtText.getText();
                 Date date = new Date();
 
-                if(amtText.getText().equals("")){
+                if (amtText.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Enter correct amount");
-                }else{
+                } else {
                     Connector con = new Connector();
                     ResultSet rs = con.statement.executeQuery("select * from bank where pin = " +
-                            "'"+pin+"'");
+                            "'" + pin + "'");
                     int balance = 0;
-                    while(rs.next()){
-                        if(rs.getString("type").equals("Deposit")){
+                    while (rs.next()) {
+                        if (rs.getString("type").equals("Deposit")) {
                             balance += Integer.parseInt(rs.getString("amount"));
-                        }else{
-                            balance -=Integer.parseInt(rs.getString("amount"));
+                        } else {
+                            balance -= Integer.parseInt(rs.getString("amount"));
                         }
                     }
-                    if(balance<Integer.parseInt(amount)){
-                        JOptionPane.showMessageDialog(null,"");
+                    if (balance < Integer.parseInt(amount)) {
+                        JOptionPane.showMessageDialog(null, "");
                         return;
                     }
-                    con.statement.executeUpdate("insert into bank values('"+pin+"','"+date+"' 'Withdrawal', " +
-                            "'"+amount+"')");
-                    JOptionPane.showMessageDialog(null,"Rs. "+amount+" Debited" +
+                    con.statement.executeUpdate("insert into bank values('" + pin + "','" + date + "' 'Withdrawal', " +
+                            "'" + amount + "')");
+                    JOptionPane.showMessageDialog(null, "Rs. " + amount + " Debited" +
                             "Successfully");
                     setVisible(false);
                     new Transaction(pin);
                 }
 
-            }catch(Exception e1){
+            } catch (Exception e1) {
                 e1.printStackTrace();
             }
+        }else if(e.getSource() == j2){
+            setVisible(false);
+            new Transaction(pin);
+        }
     }
 }
