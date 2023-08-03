@@ -11,8 +11,8 @@ import java.sql.ResultSet;
 public class Login extends JFrame implements ActionListener {
 
     JLabel label1, label2 , label3;
-    JTextField textField1, textField2;
-    JPasswordField passwordField;
+    JTextField textField1, textField2,passwordField;
+    // JPasswordField passwordField; try with textField
     JButton button1, button2, button3;
 
     Login(){
@@ -57,7 +57,7 @@ public class Login extends JFrame implements ActionListener {
         textField2.setFont(new Font("AvantGarde",Font.BOLD,14));
         add(textField2);
 
-        passwordField = new JPasswordField(15);
+        passwordField = new JTextField(15);
         passwordField.setBounds(335,250,230,30);
         passwordField.setFont(new Font("AvantGarde",Font.BOLD,14));
         add(passwordField);
@@ -102,7 +102,6 @@ public class Login extends JFrame implements ActionListener {
         setLocation(450,200);
         setUndecorated(true);
         setVisible(true);
-
     }
 
     // Here we implement actionPerformed method from ActionListener class
@@ -110,7 +109,11 @@ public class Login extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-            // to commented
+            /*
+            if user press button1, which is SingIn that means he
+            already has an account and want to, well, sign in
+            using existing data (cardNumber and pin)
+             */
             try{
             if(e.getSource()==button1){
                     Connector con = new Connector();
