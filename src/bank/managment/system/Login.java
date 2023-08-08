@@ -108,7 +108,6 @@ public class Login extends JFrame implements ActionListener {
     // the logic here is to clear all labels when button2 pressed. The other buttons logic will be updated
     @Override
     public void actionPerformed(ActionEvent e) {
-
             /*
             if user press button1, which is SingIn that means he
             already has an account and want to, well, sign in
