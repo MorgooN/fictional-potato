@@ -6,7 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.sql.ResultSet;
+import java.util.Date;
 
 public class FastCash extends JFrame implements ActionListener {
 
@@ -14,7 +16,9 @@ public class FastCash extends JFrame implements ActionListener {
     String pin;
 
 
-    FastCash() {
+    FastCash(String pin) {
+
+        this.pin = pin;
 
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/atm2.png"));
         Image i2 = i1.getImage().getScaledInstance(1550,830,Image.SCALE_DEFAULT);
@@ -86,7 +90,7 @@ public class FastCash extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new FastCash();
+        new FastCash("");
     }
 
     @Override
@@ -98,13 +102,33 @@ public class FastCash extends JFrame implements ActionListener {
                 String amount = ((JButton)e.getSource()).getText().substring(4);
                 Connector con = new Connector();
                 String q = "update table";
+                Date date = new Date();
 
                 try{
                     ResultSet rs = con.statement.executeQuery("select * from bank where pin = '"+pin+"'");
+                    int balance = 0;
+                    while(!rs.next()){
+                        if(rs.getString("type").equals("Deposit")){
+                            balance+=Integer.parseInt(rs.getString("amount"));
+                        }else{
+                            balance+=Integer.parseInt(rs.getString("amount"));
+                        }
+                    }String num =  "17";
+
+                    if(e.getSource()!= j7 && balance < Integer.parseInt(("amount"))){
+                        JOptionPane.showMessageDialog(null, "Insufficient balance");
+                        return;
+                    }
+                    con.statement.executeUpdate("insert into bank values " +
+                            "'"+pin+"','"+date+"', 'withdrawl', '"+amount+"'");
+                    JOptionPane.showMessageDialog(null, "Rs+" +
+                            "'"+amount+"'" + "Debited successfully");
 
                 }catch(Exception e1){
                     e1.printStackTrace();
                 }
+                setVisible(false);
+                new Transaction(pin);
             }
     }
 }

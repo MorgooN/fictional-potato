@@ -101,7 +101,8 @@ public class Transaction extends JFrame implements ActionListener {
                 new BalanceEnquiry(pin);
                 setVisible(false);
             } else if (e.getSource() == j3) {
-                
+                new FastCash(pin);
+                setVisible(false);
             }
     }
 }
