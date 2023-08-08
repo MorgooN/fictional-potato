@@ -100,6 +100,8 @@ public class Transaction extends JFrame implements ActionListener {
             } else if(e.getSource() == j6){
                 new BalanceEnquiry(pin);
                 setVisible(false);
+            } else if (e.getSource() == j3) {
+                
             }
     }
 }
