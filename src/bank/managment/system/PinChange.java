@@ -9,10 +9,9 @@ public class PinChange extends JFrame implements ActionListener {
 
     JButton j1,j2;
     JTextField t1,t2;
-
     String pin;
 
-    PinChange(){
+    PinChange(String pin){
 
         this.pin = pin;
 
@@ -73,7 +72,7 @@ public class PinChange extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new PinChange();
+        new PinChange(" ");
     }
 
     @Override
@@ -87,9 +86,36 @@ public class PinChange extends JFrame implements ActionListener {
                 String p1 = t1.getText();
                 String p2 = t2.getText();
 
+
+                //  Entered pins must be the same
                 if(!p1.equals(p2)){
                     JOptionPane.showMessageDialog(null,"Both pins must" +
                             " be identical");
+                    return;
+                }
+                if(e.getSource()==j1){
+                    if(p1.equals(" ")){
+                        JOptionPane.showMessageDialog(null,"PIN is not entered");
+                        return;
+                    }
+                    if(p2.equals("")){
+                        JOptionPane.showMessageDialog(null,"2'nd PIN is not entered");
+                        return;
+                    }
+
+                    // since we have 3 tables that containing PIN we must update them all
+                    Connector con = new Connector();
+                    String q1 = "update bank set pin = '"+pin+"' where pin = '"+pin+"'";
+                    String q2 = "update login set pin = '"+pin+"' where pin = '"+pin+"'";
+                    String q3 = "update bank set pin = '"+pin+"' where pin = '"+pin+"'";
+                    // updating all 3 tables
+                    con.statement.executeUpdate(q1);
+                    con.statement.executeUpdate(q2);
+                    con.statement.executeUpdate(q3);
+
+                    JOptionPane.showMessageDialog(null,"Pin updated successfully");
+                    setVisible(false);
+                    new Transaction(pin);
                 }
 
             }catch(Exception E){
