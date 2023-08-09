@@ -86,7 +86,6 @@ public class PinChange extends JFrame implements ActionListener {
                 String p1 = t1.getText();
                 String p2 = t2.getText();
 
-
                 //  Entered pins must be the same
                 if(!p1.equals(p2)){
                     JOptionPane.showMessageDialog(null,"Both pins must" +
@@ -108,7 +107,8 @@ public class PinChange extends JFrame implements ActionListener {
                     String q1 = "update bank set pin = '"+pin+"' where pin = '"+pin+"'";
                     String q2 = "update login set pin = '"+pin+"' where pin = '"+pin+"'";
                     String q3 = "update bank set pin = '"+pin+"' where pin = '"+pin+"'";
-                    // updating all 3 tables
+
+                    // updating all tables containing pins in bankSystem dataBase;
                     con.statement.executeUpdate(q1);
                     con.statement.executeUpdate(q2);
                     con.statement.executeUpdate(q3);
