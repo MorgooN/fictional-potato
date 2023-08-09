@@ -14,6 +14,8 @@ public class PinChange extends JFrame implements ActionListener {
 
     PinChange(){
 
+        this.pin = pin;
+
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/atm2.png"));
         Image i2 = i1.getImage().getScaledInstance(1550,830,Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
@@ -38,13 +40,30 @@ public class PinChange extends JFrame implements ActionListener {
         t1.setFont(new Font("AvantGarde",Font.BOLD,14));
         l3.add(t1);
 
+        JLabel l4 = new JLabel("Re-enter new PIN: ");
+        l4.setForeground(Color.WHITE);
+        l4.setFont(new Font("System",Font.BOLD,18));
+        l4.setBounds(430,290,700,40);
+        l3.add(l4);
 
+        t2 = new JTextField();
+        t2.setBounds(600,290,100,30);
+        t2.setFont(new Font("AvantGarde",Font.BOLD,14));
+        l3.add(t2);
 
+        j1 = new JButton("CHANGE");
+        j1.setForeground(Color.WHITE);
+        j1.setBackground(new Color(65,125,128));
+        j1.setBounds(702,370,150,35);
+        l3.add(j1);
+        j1.addActionListener(this);
 
-
-
-
-
+        j2 = new JButton("BACK");
+        j2.setForeground(Color.WHITE);
+        j2.setBackground(new Color(65,125,128));
+        j2.setBounds(702,412,150,35);
+        l3.add(j2);
+        j2.addActionListener(this);
 
 
         setSize(1550,1080);
@@ -59,6 +78,22 @@ public class PinChange extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+            if(e.getSource()==j2){
+                setVisible(false);
+                new Transaction(pin);
+            }
 
+            try{
+                String p1 = t1.getText();
+                String p2 = t2.getText();
+
+                if(!p1.equals(p2)){
+                    JOptionPane.showMessageDialog(null,"Both pins must" +
+                            " be identical");
+                }
+
+            }catch(Exception E){
+                E.printStackTrace();
+            }
     }
 }
