@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class Transaction extends JFrame implements ActionListener {
 
-    JButton j1,j2,j3,j4,j5,j6,j7,j8;
+    JButton j1,j2,j3,j5,j6,j7,j8;
     String pin;
 
     Transaction(String pin) {
@@ -46,13 +46,6 @@ public class Transaction extends JFrame implements ActionListener {
         j3.setBounds(402,318,150,35);
         l3.add(j3);
         j3.addActionListener(this);
-
-        j4 = new JButton("MIN. STATE.");
-        j4.setForeground(Color.WHITE);
-        j4.setBackground(new Color(65,125,128));
-        j4.setBounds(707,318,150,35);
-        l3.add(j4);
-        j4.addActionListener(this);
 
         j5 = new JButton("PIN CHANGE");
         j5.setForeground(Color.WHITE);
