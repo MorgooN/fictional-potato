@@ -9,7 +9,7 @@ public class Connector {
 
     public Connector(){
         try{
-        connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/bankSystem",
+        connection =  DriverManager.getConnection("jdbc:mysql://localhost:3306/bankSystem",
                 "root", "Stromgard_77"); // 3306 - port for MySQL connection
         statement = connection.createStatement(); // via statement instance the query will executed
 
